@@ -22,7 +22,7 @@ fclose(file);
 
 int main() {
     FILE *file;
-    Person person = {1, "Faiz saify"};
+    Person person = {1, "Aman Kumar Singh"};
 
     file = fopen("data.txt", "w");
     if (!file) {
@@ -30,7 +30,7 @@ int main() {
         return 1;
     }
 
-    fprintf(file, "Hi,I'm Faiz Saify of ECE-A(60)\n");
+    fprintf(file, "Hi,I'm Aman Kumar Singh of ECE-A(10)\n");
 
     fprintf(file, "Person ID: %d, Name: %s\n", person.id, person.name);
 
