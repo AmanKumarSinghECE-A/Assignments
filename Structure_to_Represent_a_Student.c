@@ -1,32 +1,77 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-struct student{
-char name[20];
-char trade[20];
-int rollnumber;
-char gender;
+struct Student {
+    char name[50];
+    int rollNumber;
+    int age;
+    long long mobileNumber;
 };
 
+void addRecord(struct Student students[], int *numStudents) {
+    printf("\nEnter student details:\n");
+    printf("Name: ");
+    scanf("%s", students[*numStudents].name);
+    printf("Roll Number: ");
+    scanf("%d", &students[*numStudents].rollNumber);
+    printf("Age: ");
+    scanf("%d", &students[*numStudents].age);
+    printf("Mobile Number: ");
+    scanf("%lld", &students[*numStudents].mobileNumber);
+    (*numStudents)++;
+    printf("Record added successfully!\n");
+}
 
-void main()
-{
-  struct student student1;
-  printf("Enter student name:");
-  scanf("%s",student1.name);
+// Function to display all student records
+void displayRecords(struct Student students[], int numStudents) {
+    if (numStudents == 0) {
+        printf("\nNo records available.\n");
+        return;
+    }
 
-  printf("Enter trade:");
-  scanf("%s",student1.trade);
+    printf("\nStudent Records:\n");
+    printf("------------------------------------------------\n");
 
-  printf("Enter rollnumber:");
-  scanf("%s",&student1.rollnumber);
+    for (int i = 0; i < numStudents; ++i) {
+        printf("Name:\n", students[i].name);
+        printf("Roll Number:\n", students[i].rollNumber);
+        printf("Age:\n", students[i].age);
+        printf("Mobile Number:\n", students[i].mobileNumber);
+ 		printf("------------------------------------------------\n");
 
-  printf("Enter gender (M/F):");
-  scanf("%s",&student1.gender);
+    }
 
-  printf("\n student Information:");
-  printf("Name:%s\n",student1.name);
-  printf("trade:%s\n",student1.trade);
-  printf("rollnumber:%d\n",student1.rollnumber);
-  printf("gender:%c\n",student1.gender);
-  
+    printf("------------------------------------------------\n");
+}
+
+int main() {
+    struct Student students[100];
+    int numStudents = 0;
+    int choice;
+
+    do {
+        printf("\nMenu:\n");
+        printf("1. Add Student Record\n");
+        printf("2. Display All Records\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                addRecord(students, &numStudents);
+                break;
+            case 2:
+                displayRecords(students, numStudents);
+                break;
+            case 3:
+                printf("Exiting....\n");
+                break;
+            default:
+                printf("Invalid choice. Try again.\n");
+        }
+
+    } while (choice != 3);
+
+    return 0;
 }
